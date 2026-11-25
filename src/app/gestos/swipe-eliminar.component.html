@@ -1,0 +1,16 @@
+<ion-item-sliding>
+  <!-- Boton que aparece al deslizar hacia la izquierda -->
+  <ion-item-options side="end" (ionSwipe)="eliminar.emit()">
+    <ion-item-option color="danger" expandable (click)="eliminar.emit()">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-item-option>
+  </ion-item-options>
+
+  <!-- Fila (con long-press) -->
+  <ion-item appLongPress (longPress)="presionLarga.emit()">
+    <ion-label>
+      <h2>{{ titulo }}</h2>
+      <p>{{ subtitulo }}</p>
+    </ion-label>
+  </ion-item>
+</ion-item-sliding>

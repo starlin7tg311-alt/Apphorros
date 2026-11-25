@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Metas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- COMPONENTE 1: ion-card con imagen (GESTO 3: pellizca con dos dedos para hacer zoom) -->
+  <ion-card>
+    <div class="caja-zoom">
+      <img src="assets/grafico-metas.svg" alt="Grafico de progreso" appPinchZoom />
+    </div>
+    <ion-card-header>
+      <ion-card-title>Tu progreso</ion-card-title>
+      <ion-card-subtitle>Total ahorrado: $RD {{ ahorros.totalGeneral() | number: '1.2-2' }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>Pellizca la imagen para ampliarla.</ion-card-content>
+  </ion-card>
+
+  <!-- COMPONENTE 2: ion-list con las metas -->
+  <ion-list>
+    @for (m of metas(); track m.nombre) {
+      <ion-item>
+        <ion-label>
+          <h2>{{ m.nombre }}</h2>
+          <p>Meta: $RD {{ m.objetivo | number: '1.2-2' }}</p>
+          <ion-progress-bar [value]="progreso(m.objetivo)"></ion-progress-bar>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+
+  <!-- COMPONENTE 3: ion-fab para agregar una meta -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="nuevaMeta()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

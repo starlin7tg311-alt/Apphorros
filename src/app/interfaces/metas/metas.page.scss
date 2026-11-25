@@ -1,0 +1,8 @@
+/* La imagen se amplia dentro de la tarjeta sin desbordarse */
+.caja-zoom {
+  overflow: hidden;
+  img {
+    display: block;
+    width: 100%;
+  }
+}

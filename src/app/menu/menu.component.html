@@ -1,0 +1,23 @@
+<ion-menu contentId="main-content" side="start">
+  <!-- Encabezado con logo y nombre -->
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-icon slot="start" name="bar-chart" class="ion-margin-start"></ion-icon>
+      <ion-title>APPHORROS</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Opciones de navegacion con iconos -->
+  <ion-content>
+    <ion-list>
+      @for (op of opciones; track op.ruta) {
+        <ion-menu-toggle [autoHide]="false">
+          <ion-item button [routerLink]="op.ruta" routerLinkActive="activo" routerDirection="root" lines="none">
+            <ion-icon slot="start" [name]="op.icono"></ion-icon>
+            <ion-label>{{ op.titulo }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      }
+    </ion-list>
+  </ion-content>
+</ion-menu>

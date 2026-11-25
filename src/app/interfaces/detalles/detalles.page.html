@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Detalles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- COMPONENTE 1: ion-refresher (pull-to-refresh) -->
+  <ion-refresher slot="fixed" (ionRefresh)="refrescar($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle"
+      pullingText="Desliza para recargar"
+      refreshingSpinner="crescent"
+      refreshingText="Cargando ahorros..."
+    ></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- COMPONENTE 2: ion-card con el total del mes -->
+  <ion-card color="primary">
+    <ion-card-header>
+      <ion-card-subtitle>TOTAL · {{ ahorros.nombresMes[ahorros.mes()] }} {{ ahorros.anio() }}</ion-card-subtitle>
+      <ion-card-title>$RD {{ ahorros.totalDelMes() | number: '1.2-2' }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>Ahorros de este mes</ion-card-content>
+  </ion-card>
+
+  <!-- COMPONENTES 3 y 4: ion-list + ion-item-sliding (dentro de app-swipe-eliminar) -->
+  <ion-list>
+    @for (a of ahorros.ahorrosDelMes(); track a.id) {
+      <app-swipe-eliminar
+        [titulo]="'$RD ' + (a.monto | number: '1.2-2')"
+        [subtitulo]="a.fecha"
+        (eliminar)="eliminar(a)"
+        (presionLarga)="menuContextual(a)"
+      ></app-swipe-eliminar>
+    } @empty {
+      <ion-item lines="none">
+        <ion-label class="ion-text-center" color="medium">
+          <h3>Aún no hay ahorros</h3>
+          <p>Los registros de este mes aparecerán aquí.</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>

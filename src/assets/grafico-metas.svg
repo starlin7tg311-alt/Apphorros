@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <rect width="600" height="300" fill="#e3eee7"/>
+  <rect x="90"  y="170" width="70" height="90"  rx="10" fill="#9cc4b0"/>
+  <rect x="200" y="130" width="70" height="130" rx="10" fill="#5e9a80"/>
+  <rect x="310" y="90"  width="70" height="170" rx="10" fill="#2f7a5f"/>
+  <rect x="420" y="40"  width="70" height="220" rx="10" fill="#14604a"/>
+  <text x="300" y="285" font-family="sans-serif" font-size="16" text-anchor="middle" fill="#14604a">Tu progreso de ahorro</text>
+</svg>

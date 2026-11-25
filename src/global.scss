@@ -1,0 +1,17 @@
+/* Colores de Apphorros (verde de los disenos de Figma) */
+:root {
+  --ion-color-primary: #14604a;
+  --ion-color-primary-rgb: 20, 96, 74;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #115440;
+  --ion-color-primary-tint: #2b6f5a;
+
+  --ion-background-color: #f4f7f4;
+  --ion-text-color: #1c3d33;
+}
+
+/* Tarjetas redondeadas como en el diseno */
+ion-card {
+  border-radius: 24px;
+}

@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Calendario de ahorros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- COMPONENTE 1: ion-card con el calendario -->
+  <ion-card>
+    <ion-card-header>
+      <div class="mes-nav">
+        <ion-button fill="clear" (click)="cambiarMes(-1)">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+        <div class="centro">
+          <ion-card-title>{{ ahorros.nombresMes[ahorros.mes()] }}</ion-card-title>
+          <ion-card-subtitle>{{ ahorros.anio() }}</ion-card-subtitle>
+        </div>
+        <ion-button fill="clear" (click)="cambiarMes(1)">
+          <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="rejilla">
+        @for (d of diasSemana; track d) {
+          <span class="nombre-dia">{{ d }}</span>
+        }
+        @for (d of dias(); track $index) {
+          @if (d) {
+            <button class="dia" [class.activo]="d === dia()" (click)="dia.set(d)">{{ d }}</button>
+          } @else {
+            <span></span>
+          }
+        }
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- ion-card con el monto a ahorrar -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>MONTO A AHORRAR · DIA {{ dia() }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-input type="number" label="$RD" fill="outline" placeholder="0.00" [(ngModel)]="monto"></ion-input>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- COMPONENTE 2: ion-list con los ahorros del dia seleccionado -->
+  <ion-list>
+    @for (a of ahorrosDelDia(); track a.id) {
+      <ion-item>
+        <ion-label>$RD {{ a.monto | number: '1.2-2' }}</ion-label>
+      </ion-item>
+    } @empty {
+      <ion-item lines="none"><ion-label color="medium">Sin ahorros este dia</ion-label></ion-item>
+    }
+  </ion-list>
+
+  <!-- COMPONENTE 3: ion-fab para guardar el ahorro -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="guardar()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
